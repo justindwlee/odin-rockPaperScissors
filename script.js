@@ -45,12 +45,14 @@ function getRandomChoice() {
 
 
 function playRound(playerSelection, computerSelection) {
-    console.log("Player has " + playerSelection);
-    console.log("Computer has " + computerSelection);
+    
 
     let lowerCasePS = playerSelection.toLowerCase();
     let lowerCaseCS = computerSelection.toLowerCase();
     let resultMessage;
+
+    console.log("Player has " + lowerCasePS);
+    console.log("Computer has " + lowerCaseCS);
 
     if (lowerCasePS === "rock") {
         if (lowerCaseCS === "rock")
@@ -85,14 +87,13 @@ function playRound(playerSelection, computerSelection) {
 
 function game() {
     console.log("Let the game start! Rock Paper Scissors!");
-    console.log();
 
     let playerScore = 0;
     let computerScore = 0;
 
     for (i = 1; i <= 5; i++)
     {
-        let playerSelection = getRandomChoice();
+        let playerSelection = prompt("Rock Paper Scissors!", "rock");
         let computerSelection = getRandomChoice();
 
         let resultMessage = playRound(playerSelection, computerSelection);
@@ -104,10 +105,6 @@ function game() {
             computerScore++;
 
         console.log("Player " + playerScore + ":" + computerScore + " Computer");
-
-
-        if (playerScore === 3 || computerScore === 3)
-            break;
     }
 
     if (playerScore > computerScore)
