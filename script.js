@@ -51,9 +51,6 @@ function playRound(playerSelection, computerSelection) {
     let lowerCaseCS = computerSelection.toLowerCase();
     let resultMessage;
 
-    console.log("Player has " + lowerCasePS);
-    console.log("Computer has " + lowerCaseCS);
-
     if (lowerCasePS === "rock") {
         if (lowerCaseCS === "rock")
             resultMessage = "Draw! Both of you have rock.";
@@ -79,41 +76,119 @@ function playRound(playerSelection, computerSelection) {
             resultMessage = "Draw! Both of you have paper.";
     }
 
+    console.log(resultMessage);
     return resultMessage;
 }
 
 
 //3. Making the game() function
 
-function game() {
-    console.log("Let the game start! Rock Paper Scissors!");
+// function game() {
+//     console.log("Let the game start! Rock Paper Scissors!");
 
-    let playerScore = 0;
-    let computerScore = 0;
+//     let playerScore = 0;
+//     let computerScore = 0;
 
-    for (i = 1; i <= 5; i++)
-    {
-        let playerSelection = prompt("Rock Paper Scissors!", "rock");
-        let computerSelection = getRandomChoice();
+//     for (i = 1; i <= 5; i++)
+//     {
+//         let playerSelection = prompt("Rock Paper Scissors!", "rock");
+//         let computerSelection = getRandomChoice();
 
-        let resultMessage = playRound(playerSelection, computerSelection);
-        console.log(resultMessage);
+//         let resultMessage = playRound(playerSelection, computerSelection);
+//         console.log(resultMessage);
 
-        if (resultMessage.includes('win'))
-            playerScore++;
-        else if (resultMessage.includes('lose'))
-            computerScore++;
+//         if (resultMessage.includes('win'))
+//             playerScore++;
+//         else if (resultMessage.includes('lose'))
+//             computerScore++;
 
-        console.log("Player " + playerScore + ":" + computerScore + " Computer");
+//         console.log("Player " + playerScore + ":" + computerScore + " Computer");
+//     }
+
+//     if (playerScore > computerScore)
+//         console.log("Player wins!");
+//     else if (playerScore < computerScore)
+//         console.log("Computer wins!");
+//     else
+//         console.log("It's a draw!");
+// }
+
+
+
+const buttons = document.querySelectorAll('button');
+const playerScore = document.querySelector('.playerScore');
+const computerScore = document.querySelector('.computerScore');
+const playResult = document.querySelector('#playResult');
+const finalResult = document.querySelector('#finalResult');
+
+let plScore = 0;
+let cmpScore = 0;
+
+function handleClick(event) {
+    const resultMessage = playRound(event.target.textContent, getRandomChoice());
+
+    playResult.textContent = resultMessage;
+
+    if (resultMessage.includes('win')) {
+        plScore++;
+        playerScore.textContent = plScore;
+    }
+    else if (resultMessage.includes('lose')) {
+        cmpScore++;
+        computerScore.textContent = cmpScore;
     }
 
-    if (playerScore > computerScore)
-        console.log("Player wins!");
-    else if (playerScore < computerScore)
-        console.log("Computer wins!");
-    else
-        console.log("It's a draw!");
+
+    if (plScore === 5 || cmpScore === 5) {
+        const winner = plScore > cmpScore ? "Player" : "Computer";
+
+        finalResult.textContent = `Game Over! ${winner} wins!`;
+
+        buttons.forEach((button) => {
+            button.removeEventListener('click', handleClick);
+        })
+
+        let regameBtn = document.createElement('button');
+        regameBtn.textContent = 'Another game?';
+        regameBtn.addEventListener('click', function() {
+            location.reload();
+        })
+
+        document.body.appendChild(regameBtn);
+    }
 }
 
+buttons.forEach((button) => {
+    button.addEventListener('click', handleClick);
+})
 
-game();
+
+
+
+// buttons.forEach((button) => {
+//     button.addEventListener('click', () => {
+//         const resultMessage = playRound(`${button.textContent}`, getRandomChoice());
+
+//         playResult.textContent = resultMessage;
+
+//         if (resultMessage.includes('win')) {
+//             plScore++;
+//             playerScore.textContent = plScore;
+//         }
+//         else if (resultMessage.includes('lose')) {
+//             cmpScore++;
+//             computerScore.textContent = cmpScore;
+//         }
+
+
+//         if (plScore === 5 || cmpScore === 5) {
+//             const winner = plScore > cmpScore ? "Player" : "Computer";
+
+//             finalResult.textContent = `Game Over! ${winner} wins!`;
+//         }
+//     })
+// })
+
+
+
+
