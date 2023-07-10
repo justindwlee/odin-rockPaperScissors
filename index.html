@@ -3,23 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rock Paper Scissors!</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
 <body>
-    <button id ="rock">Rock</button>
-    <button id ="paper">Paper</button>
-    <button id ="scissors">Scissors</button>
+    <h1>Let's Play Rock Paper Scissors!</h1>
+    <h3>Score 5 points to win</h3>
 
-    <div id="playResult">Let the game start!</div>
+    <div class="container">
+        <div class="human-side">
+           <div>Human</div>
+           <div class="human-buttons">
+            <button>
+                <img id ="rock" src="./img/rock.png" alt="rock image">
+            </button>
+            <button>
+                <img id ="paper" src="./img/paper.png" alt="rock image">
+            </button>
+            <button>
+                <img id ="scissors" src="./img/scissors.png" alt="rock image">
+            </button>
+           </div>
+           <span class="playerScore">0</span>
+           <div class="humanChoice"></div>
+        </div>
 
-    <div id="scoreboard">
-        <div class="playerScore">0</div>
-        <div>:</div>
-        <div class="computerScore">0</div>
+        <div class="versus">VS</div>
+
+        <div class="computer-side">
+            <div>Computer</div>
+            <div class="computer-buttons">
+                    <img id ="rock" src="./img/rock.png" alt="rock image">
+                    <img id ="paper" src="./img/paper.png" alt="rock image">
+                    <img id ="scissors" src="./img/scissors.png" alt="rock image">
+            </div>
+            <span class="computerScore">0</span>
+            <div class="computerChoice"></div>
+        </div>
     </div>
 
+
+    <div id="playResult"></div>
     <div id="finalResult"></div>
 </body>
 </html>
