@@ -76,43 +76,8 @@ function playRound(playerSelection, computerSelection) {
             resultMessage = "Draw! Both of you have paper.";
     }
 
-    console.log(resultMessage);
     return resultMessage;
 }
-
-
-//3. Making the game() function
-
-// function game() {
-//     console.log("Let the game start! Rock Paper Scissors!");
-
-//     let playerScore = 0;
-//     let computerScore = 0;
-
-//     for (i = 1; i <= 5; i++)
-//     {
-//         let playerSelection = prompt("Rock Paper Scissors!", "rock");
-//         let computerSelection = getRandomChoice();
-
-//         let resultMessage = playRound(playerSelection, computerSelection);
-//         console.log(resultMessage);
-
-//         if (resultMessage.includes('win'))
-//             playerScore++;
-//         else if (resultMessage.includes('lose'))
-//             computerScore++;
-
-//         console.log("Player " + playerScore + ":" + computerScore + " Computer");
-//     }
-
-//     if (playerScore > computerScore)
-//         console.log("Player wins!");
-//     else if (playerScore < computerScore)
-//         console.log("Computer wins!");
-//     else
-//         console.log("It's a draw!");
-// }
-
 
 
 const buttons = document.querySelectorAll('button');
@@ -123,15 +88,12 @@ const finalResult = document.querySelector('#finalResult');
 const humanChoice = document.querySelector('.humanChoice');
 const computerChoice = document.querySelector('.computerChoice');
 
-
 let plScore = 0;
 let cmpScore = 0;
 
 function handleClick(event) {
 
     const cmpChoice = getRandomChoice();
-
-    
 
     humanChoice.textContent = `Player has ${event.target.id}`;
     computerChoice.textContent = `Computer has ${cmpChoice}`;
@@ -160,14 +122,16 @@ function handleClick(event) {
 
         finalResult.textContent = `Game Over! ${winner} wins!`;
 
+        
 
         buttons.forEach((button) => {
             button.removeEventListener('click', handleClick);
+            button.classList.toggle('change-opacity');
         })
 
         let regameBtn = document.createElement('button');
         regameBtn.textContent = 'Play Again?';
-        regameBtn.style.cssText = "background-color:#3B82F6; border: 0; box-shadow: 2px 4px 8px rgba(0,0,0,0.7); color: white; font-size: 15px; font-weight: bold; height: 50px; margin-bottom: 14px;";
+        regameBtn.style.cssText = "background-color:#3B82F6; border: 0; box-shadow: 2px 4px 4px rgba(0,0,0,0.3); color: white; font-size: 15px; font-weight: bold; height: 50px; margin-bottom: 14px;";
         regameBtn.addEventListener('click', function() {
             location.reload();
         })
@@ -175,8 +139,6 @@ function handleClick(event) {
         document.body.appendChild(regameBtn);
     }
 }
-
-console.log(buttons);
 
 buttons.forEach((button) => {
     button.addEventListener('click', handleClick);
